@@ -4,6 +4,13 @@
 -define(INTERVAL, 10000).
 -define(RESERVED, 0,0,0,0).
 -define(REGISTER, 1,0,0,0).
+-define(STATION_USER_ID, 0,0,0,0).
+-define(STATION_INSTANCE, 1,0,0,0).
+-define(IP, 10,9,0,75).
+-define(DEVICE_TYPE, 8,0,0,0).
+-define(MAX_STREAMS, 0,0,0,0).
+
+
 keepalive() ->
     receive Sock ->
 	    io:format("keepalive ~p ~n", [Sock]),
@@ -22,6 +29,6 @@ tcp_start() ->
     {ok, Sock}.
 
 registerMessage() ->
-    {ok, list_to_binary([?RESERVED, ?REGISTER , "SEP001646806587", 0, 0, 1])}.
+    {ok, list_to_binary([?RESERVED, ?REGISTER , "SEP001646806587", ?STATION_USER_ID, ?STATION_INSTANCE, ?IP, ?DEVICE_TYPE, ?MAX_STREAMS])}.
     
     
